@@ -18,6 +18,8 @@ bot.
 import logging
 from decouple import config
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+import requests
+import time
 
 TOKEN = config("BOT_TOKEN")
 
@@ -78,6 +80,9 @@ def main():
     # start_polling() is non-blocking and will stop the bot gracefully.
     updater.idle()
 
+"""
+This is just comment full message with getting vikas jha full tutorial on youtube
+"""
 
 if __name__ == '__main__':
     main()
