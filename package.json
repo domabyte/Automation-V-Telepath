@@ -1,5 +1,24 @@
 {
   "dependencies": {
+    "dotenv": "^16.0.3",
     "telegraf": "^4.11.2"
-  }
+  },
+  "name": "telegraf",
+  "description": "In trial, may gonna release soon.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dikshit-byte/Automation-V-Telepath.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dikshit-byte/Automation-V-Telepath/issues"
+  },
+  "homepage": "https://github.com/Dikshit-byte/Automation-V-Telepath#readme"
 }
