@@ -1,6 +1,7 @@
-const {Telegraf } = require("telegraf");
+const { Telegraf } = require("telegraf");
 const dotenv = require("dotenv");
 const tele = require("./open-ai/version1");
+const generat =  require("./cohere-ai/generate")
 
 dotenv.config();
 
@@ -21,6 +22,13 @@ bot.on('message',(ctx)=>{
                     ctx.reply(data);
                 }).catch(err=>console.log(err));
                 break;
+        case 'G':
+            case 'g':
+                generat.generate(query).then((data)=>{
+                    ctx.reply(data);
+                }).catch(err=>console.log(err));
+                break;
+                
 
         default:
             ctx.reply("Just ask question. Don't spam here!!");
@@ -29,3 +37,4 @@ bot.on('message',(ctx)=>{
 })
 
 bot.launch();
+
