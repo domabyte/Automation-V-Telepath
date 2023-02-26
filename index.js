@@ -1,6 +1,7 @@
-const {Telegraf } = require("telegraf");
+const { Telegraf } = require("telegraf");
 const dotenv = require("dotenv");
 const tele = require("./open-ai/version1");
+const generat =  require("./cohere-ai/generate")
 
 dotenv.config();
 
@@ -18,6 +19,12 @@ bot.on('message',(ctx)=>{
         case 'Q':
             case 'q':
                 tele.teleV(query).then((data)=>{
+                    ctx.reply(data);
+                }).catch(err=>console.log(err));
+                break;
+        case 'C':
+            case 'c':
+                generat.generate(query).then((data)=>{
                     ctx.reply(data);
                 }).catch(err=>console.log(err));
                 break;
