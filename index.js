@@ -22,13 +22,12 @@ bot.on('message',(ctx)=>{
                     ctx.reply(data);
                 }).catch(err=>console.log(err));
                 break;
-        case 'G':
-            case 'g':
+        case 'C':
+            case 'c':
                 generat.generate(query).then((data)=>{
                     ctx.reply(data);
                 }).catch(err=>console.log(err));
                 break;
-                
 
         default:
             ctx.reply("Just ask question. Don't spam here!!");
@@ -37,4 +36,3 @@ bot.on('message',(ctx)=>{
 })
 
 bot.launch();
-
