@@ -7,7 +7,7 @@ async function generateTxt(txt){
     model: 'xlarge',
     prompt: txt,
     max_tokens: 600,
-    temperature: 0.3,
+    temperature: 1,
     k: 0,
     p: 1.0,
     frequency_penalty: 0,
