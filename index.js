@@ -1,13 +1,14 @@
 const { Telegraf } = require("telegraf");
 const dotenv = require("dotenv");
-const tele = require("./open-ai/version1");
-const generat =  require("./cohere-ai/generate");
-const DalleGenerateImage = require("./open-ai/Dalle_generate_image");
-
+const tele = require("./open-ai/GPT");
+const generat =  require("./cohere-ai/cohere");
+const DalleGenerateImage = require("./open-ai/DALLE_AI");
+const {spawn} = require("child_process");
 dotenv.config();
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
+console.log("Server initiated for Telegram Bot!!");
 
 bot.start((ctx)=>ctx.reply('Welcome'));
 bot.on('message',(ctx)=>{
@@ -34,14 +35,24 @@ bot.on('message',(ctx)=>{
                 break;
 
 
- // For Generating ramdom image using Dalle
-        case 'G':
-            case 'g':
+ // For Generating image from text using Dalle-2
+        case 'I1':
+            case 'i1':
                 DalleGenerateImage.GI(query).then((data)=>{
-                    ctx.sendPhoto(data)
+                    ctx.sendPhoto(data);
                 }).catch(err=>console.log(err));  
                 break;  
-                   
+
+ // For Generating image from text using stable-diffusion
+        case 'I2':
+            case 'i2':
+                    const response =  spawn('python',['./py_modules/stable_diffusion.py',query]);
+                    response.stdout.on('data',(data)=>{
+                        const result = data.toString();
+                        const imgLink = result.split("'")[1];
+                        ctx.sendPhoto(imgLink);
+                    });
+                    break;
 
         default:
             ctx.reply("Just ask question. Don't spam here!!");
