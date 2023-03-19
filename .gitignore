@@ -1,3 +1,8 @@
 .env
 node_modules/
+<<<<<<< HEAD
+
+/py-modules/stable_diffusion.py/
+=======
 .spotdl-cache
+>>>>>>> 7ad40cb8dd84d10aab33fe924a60477c415c67e8
