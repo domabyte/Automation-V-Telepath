@@ -87,6 +87,22 @@ bot.on('message',(ctx)=>{
                 break;
 
 
+// chat gpt modal 3.5
+        case 'G':
+            case 'g':
+                // console.log("i am here")
+                const resgpt = spawn('python', ['./open-ai/Gptpy.py', query]);
+                resgpt.stdout.on('data',(data)=>{
+                    // console.log(data);
+                    const result = data.toString();
+                    const rep =  result.trim();
+                    // console.log(rep);
+                    // const rep = result.split("'")[1];
+                    ctx.reply(result);
+                })
+                break;      
+
+
         default:
             ctx.reply("Just ask question. Don't spam here!!");
             break;
