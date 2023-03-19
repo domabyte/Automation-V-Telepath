@@ -69,7 +69,7 @@ bot.on('message',(ctx)=>{
         case 'Y':
             case 'y':
                 YTV.YT(query).then((data)=>{
-                    
+                    // Gonna add this soon
                     console.log(data);
                     // ctx.replyWithVideo('https://drop-and-down-vidoes.netlify.app/New%20folder/05.mp4');
                     ctx.replyWithVideo('http://localhost:5500/videos/video.mp4?random=58')
