@@ -2,7 +2,10 @@
   "dependencies": {
     "cohere-ai": "^5.1.0",
     "dotenv": "^16.0.3",
+    "isomorphic-unfetch": "^4.0.2",
     "openai": "^3.1.0",
+    "spotify-dl": "^1.1.0",
+    "spotify-url-info": "^3.2.3",
     "telegraf": "^4.11.2"
   },
   "name": "telegraf",
