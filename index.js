@@ -6,28 +6,20 @@ const DalleImage = require("./open-ai/DALLE_AI");
 const {spawn} = require("child_process");
 const YTV = require("./Youtube/Youtube");
 const fs = require('fs');
-const express =  require('express');
-
-
-const app =  express();
-const PORT = process.env.PORT || 4000
-app.get('/',(req,res)=>{
-    res.send('running the server');
-})
 
 dotenv.config();
-
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
 console.log("Server initiated for Telegram Bot!!");
 
 bot.start((ctx)=>ctx.reply('Welcome'));
+// bot.hears('hi', (ctx) => ctx.reply('Hey there'));
 bot.on('message',(ctx)=>{
     let texture = ctx.message.text;
     let splitTexture = texture.split(": ");
     let textCode = splitTexture[0];
     let query = splitTexture[1];
-
+    console.log("query");
     switch(textCode){
 
 // For Query using open-ai
@@ -110,7 +102,3 @@ bot.on('message',(ctx)=>{
 })
 
 bot.launch();
-
-app.listen(PORT, ()=>{
-    console.log("server is running at 4000");
-})
