@@ -1,8 +1,8 @@
 const { Telegraf } = require("telegraf");
 const dotenv = require("dotenv");
 const tele = require("./open-ai/GPT");
-const generat =  require("./cohere-ai/cohere");
-const DalleGenerateImage = require("./open-ai/DALLE_AI");
+const cohere =  require("./cohere-ai/cohere");
+const DalleImage = require("./open-ai/DALLE_AI");
 const {spawn} = require("child_process");
 dotenv.config();
 
@@ -29,7 +29,7 @@ bot.on('message',(ctx)=>{
 
         case 'C':
             case 'c':
-                generat.generate(query).then((data)=>{
+                cohere.generate(query).then((data)=>{
                     ctx.reply(data);
                 }).catch(err=>console.log(err));
                 break;
@@ -38,7 +38,7 @@ bot.on('message',(ctx)=>{
  // For Generating image from text using Dalle-2
         case 'I1':
             case 'i1':
-                DalleGenerateImage.GI(query).then((data)=>{
+                DalleImage.GI(query).then((data)=>{
                     ctx.sendPhoto(data);
                 }).catch(err=>console.log(err));  
                 break;  
@@ -46,7 +46,7 @@ bot.on('message',(ctx)=>{
  // For Generating image from text using stable-diffusion
         case 'I2':
             case 'i2':
-                    const response =  spawn('python',['./py_modules/stable_diffusion.py',query]);
+                    const response =  spawn('python',['./py_modules/Stable Diffusion/stable_diffusion.py',query]);
                     response.stdout.on('data',(data)=>{
                         const result = data.toString();
                         const imgLink = result.split("'")[1];
@@ -61,4 +61,3 @@ bot.on('message',(ctx)=>{
 })
 
 bot.launch();
-
