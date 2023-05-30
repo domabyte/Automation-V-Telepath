@@ -4,6 +4,17 @@ const tele = require("./open-ai/GPT");
 const cohere =  require("./cohere-ai/cohere");
 const DalleImage = require("./open-ai/DALLE_AI");
 const {spawn} = require("child_process");
+const YTV = require("./Youtube/Youtube");
+const fs = require('fs');
+const express =  require('express');
+
+
+const app =  express();
+const PORT = process.env.PORT || 4000
+app.get('/',(req,res)=>{
+    res.send('running the server');
+})
+
 dotenv.config();
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
@@ -54,6 +65,44 @@ bot.on('message',(ctx)=>{
                     });
                     break;
 
+
+        case 'Y':
+            case 'y':
+                YTV.YT(query).then((data)=>{
+                    // Gonna add this soon
+                    console.log(data);
+                    // ctx.replyWithVideo('https://drop-and-down-vidoes.netlify.app/New%20folder/05.mp4');
+                    ctx.replyWithVideo('http://localhost:5500/videos/video.mp4?random=58')
+                    
+                // ctx.replyWithVideo('http://localhost:4000/Videos/video.mp4')
+                // ctx.sendVideo('https://automation-v-telepath/Videos/video.mp4');
+
+                //     fs.unlinkSync('http://127.0.0.1:5500/Automation/Automation-V-Telepath/Videos/video.mp4',()=>{
+                //         if(err) console.log(err);
+                //    else console.log("file deleted !!")
+                        
+                //       })
+                  
+                }).catch(err=>console.log(err));
+                break;
+
+
+// chat gpt modal 3.5
+        case 'G':
+            case 'g':
+                // console.log("i am here")
+                const resgpt = spawn('python', ['./open-ai/Gptpy.py', query]);
+                resgpt.stdout.on('data',(data)=>{
+                    // console.log(data);
+                    const result = data.toString();
+                    const rep =  result.trim();
+                    // console.log(rep);
+                    // const rep = result.split("'")[1];
+                    ctx.reply(result);
+                })
+                break;      
+
+
         default:
             ctx.reply("Just ask question. Don't spam here!!");
             break;
@@ -61,3 +110,7 @@ bot.on('message',(ctx)=>{
 })
 
 bot.launch();
+
+app.listen(PORT, ()=>{
+    console.log("server is running at 4000");
+})
