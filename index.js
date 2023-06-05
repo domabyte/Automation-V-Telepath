@@ -7,13 +7,15 @@ const {spawn} = require("child_process");
 const YTV = require("./Youtube/Youtube");
 const fs = require('fs');
 
+
+
 dotenv.config();
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
 console.log("Server initiated for Telegram Bot!!");
 
 bot.start((ctx)=>ctx.reply('Welcome'));
-// bot.hears('hi', (ctx) => ctx.reply('Hey there'));
+
 bot.on('message',(ctx)=>{
     let texture = ctx.message.text;
     let splitTexture = texture.split(": ");
@@ -63,10 +65,9 @@ bot.on('message',(ctx)=>{
                 YTV.YT(query).then((data)=>{
                     // Gonna add this soon
                     console.log(data);
-                    // ctx.replyWithVideo('https://drop-and-down-vidoes.netlify.app/New%20folder/05.mp4');
-                    ctx.replyWithVideo('http://localhost:5500/videos/video.mp4?random=58')
-                    
-                // ctx.replyWithVideo('http://localhost:4000/Videos/video.mp4')
+                    ctx.replyWithVideo('querry');
+                    // ctx.replyWithVideo('http://localhost:5500/videos/video.mp4?random=58')  
+                    ctx.reply('video is downloading');
                 // ctx.sendVideo('https://automation-v-telepath/Videos/video.mp4');
 
                 //     fs.unlinkSync('http://127.0.0.1:5500/Automation/Automation-V-Telepath/Videos/video.mp4',()=>{
