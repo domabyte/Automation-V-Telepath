@@ -11,11 +11,8 @@ load_dotenv()
 PROMPT = sys.argv[1]
 
 #Replicate api
-REPLICATE_API_TOKEN = os.getenv('OPENAI_API_KEY')
-
-# print(REPLICATE_API_TOKEN);
-
-openai.api_key = REPLICATE_API_TOKEN
+OPENAI_API_TOKEN = os.getenv('OPENAI_API_KEY')
+openai.api_key = OPENAI_API_TOKEN
 
 message_history = []
 
@@ -30,18 +27,7 @@ def chat(inp, role="user"):
     message_history.append({"role": "assistant", "content": f"{reply_content}"})
     return reply_content
 
+chat(PROMPT)
 
-
-print(chat(PROMPT));
-
-print(message_history);
-
-# completion = openai.ChatCompletion.create(
-#   model="gpt-3.5-turbo", # this is "ChatGPT" $0.002 per 1k tokens
-#   messages=[{"role": "user", "content": "What is the circumference in km of the planet Earth?"}]
-# )
-
-# print(completion);
-# reply_content = completion.choices[0].message.content
-# print(reply_content)
+print(message_history[1]['content'])
 
