@@ -1,1 +1,1 @@
-In trial, may gonna release soon.
+In progress, may gonna release soon.
